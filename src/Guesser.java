@@ -3,9 +3,7 @@
 class Guesser {
 private int guess;
 private int newGuess;
-
-
-
+private int count = 0;
 
 public Guesser(int min, int max) {
     guess = (int) (Math.random() * (max - min + 1) + min);
@@ -14,6 +12,11 @@ public Guesser(int min, int max) {
 public int returnGuess() {
     return guess;
 }
+
+public void increaseCount () {
+    count++;
+}
+
 
 
 public int tooHighOrLow(String lowOrHigh, int min, int max) {
@@ -25,14 +28,18 @@ public int tooHighOrLow(String lowOrHigh, int min, int max) {
         newGuess--;
     }
     guess = newGuess;
+    count++;
     return newGuess;
 }
 //make sure there are no repeats
 
 
-public void printGuess() {
-    System.out.print("Is " + guess + " your number? Enter \"yes\", \"too low\", or \"too high\"");
+public String toString() {
+    return "Is " + guess + " your number? Enter \"yes\", \"too low\", or \"too high\"";
 }
 
+public int returnCount(){
+    return count;
+}
 
 }

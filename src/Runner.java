@@ -2,7 +2,6 @@ import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) {
         int newGuess = 0;
-        int count = 1;
 
 
         Scanner userInput = new Scanner(System.in);
@@ -16,13 +15,12 @@ public class Runner {
         String doneOrNot = userInput.nextLine();
 
 
-        originalGuess.printGuess();
+        System.out.println(originalGuess);
         String wrongOrRight = userInput.nextLine();
 
 
         while (!wrongOrRight.equals("yes")) {
             if (wrongOrRight.equals("too low") || wrongOrRight.equals("too high")) {
-                count++;
                 if (wrongOrRight.equals("too low")) {
                     min = newGuess;
                 }
@@ -30,14 +28,15 @@ public class Runner {
                     max = newGuess;
                 }
                 newGuess = originalGuess.tooHighOrLow(wrongOrRight, min, max);
-                originalGuess.printGuess();
+                System.out.println(originalGuess);
+                originalGuess.increaseCount();
                 wrongOrRight = userInput.nextLine();
             } else {
                 System.out.println("Enter \"yes\", \"too low\", or \"too high\"");
                 wrongOrRight = userInput.nextLine();
             }
         }
-
+        int count = originalGuess.returnCount();
         String congrats = "That took " + count + " tries";
         if (count < 10) {
             congrats += ". Wow! I did better than I though I would.";
