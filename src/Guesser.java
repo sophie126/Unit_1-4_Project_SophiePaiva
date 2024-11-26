@@ -2,8 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 class Guesser {
 private int guess;
-private int newGuess;
-private int count = 0;
+private int count = 1;
 
 public Guesser(int min, int max) {
     guess = (int) (Math.random() * (max - min + 1) + min);
@@ -18,20 +17,10 @@ public void increaseCount () {
 }
 
 
-
-public int tooHighOrLow(String lowOrHigh, int min, int max) {
-    newGuess = (int) (Math.random() * (max - min + 1) + min);
-    if (newGuess == guess && lowOrHigh.equals("too low")) {
-        newGuess++;
-    }
-    if (newGuess == guess && lowOrHigh.equals("too high")) {
-        newGuess--;
-    }
-    guess = newGuess;
-    count++;
-    return newGuess;
+public int tooHighOrLow(int min, int max) {
+    guess = (int) (Math.random() * (max - min + 1) + min);
+    return guess;
 }
-//make sure there are no repeats
 
 
 public String toString() {
