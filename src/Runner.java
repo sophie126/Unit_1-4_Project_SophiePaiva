@@ -11,25 +11,26 @@ public class Runner {
         int min = userInput.nextInt();
         System.out.println("What should the maximum be?");
         int max = userInput.nextInt();
+
         Guesser guesser = new Guesser(min, max);
         newGuess = guesser.returnGuess();
-        System.out.println("Press enter when done");
-        String doneOrNot = userInput.nextLine();
 
+        System.out.println("Press enter when done");
+        String doneOrNot = userInput.nextLine(); // So the user gets time to think about their answer
 
         System.out.println(guesser);
         String wrongOrRight = userInput.nextLine();
 
 
-        while (!wrongOrRight.equals("yes")) {
+        while (!wrongOrRight.equals("yes")) { // Guesses new numbers until the user says it's accurate
             if (wrongOrRight.equals("too low") || wrongOrRight.equals("too high")) {
                 if (wrongOrRight.equals("too low")) {
                     min = newGuess + 1;
                 }
-                if (wrongOrRight.equals("too high")) {
+                if (wrongOrRight.equals("too high")) { // Makes the Math.random() exclusive (it won't include the number the user said is too low or high)
                     max = newGuess - 1;
                 }
-                newGuess = guesser.tooHighOrLow( min, max);
+                newGuess = guesser.tooHighOrLow(min, max); // Guesses using new min and max
                 System.out.println(guesser);
                 guesser.increaseCount();
                 wrongOrRight = userInput.nextLine();
